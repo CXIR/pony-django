@@ -15,7 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from elder import views
 
 urlpatterns = [
+    url(r'^login', auth_views.login),
+    url(r'^logout', auth_views.logout, {'next_page': 'registration/login.html'}),
+    url(r'^password_change', auth_views.password_change),
+    url(r'^password_change_done', auth_views.password_change_done),
+    url(r'^password_reset', auth_views.password_reset),
+    url(r'^password_reset_done', auth_views.password_reset_done),
+    url(r'^password_reset_confirm', auth_views.password_reset_confirm),
+    url(r'^password_reset_complete', auth_views.password_reset_complete),
+    url(r'^contact/$', views.contact, name='contact'),
+    url(r'^profile/$', views.profile, name='profile'),
+    url(r'^find/$', views.findoldperson, name='finoldperson'),
     url(r'^admin/', admin.site.urls),
 ]
