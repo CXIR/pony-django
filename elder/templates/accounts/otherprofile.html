@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} Un vieux ou une vieille {% endblock %}
+{% block content %}
+
+    <h1>OTHER OLD PERSON</h1>
+
+    <p>USERNAME : {{ person.user.username }}</p>
+    <p>EMAIL : {{ person.user.email}}</p>
+    <p>BIRTHDAY : {{ person.birthday }}</p>
+    <p>DESCRIPTION : {{ person.description }}</p>
+    <p>WEIGHT : {{ person.weight }}</p>
+    <p>HEIGHT : {{ person.height }}</p>
+    <p>SEXE : {{ person.sexe }}</p>
+    <p>SEXUAL PREF. : {{ person.sexualOrientation }}</p>
+    <p>AGE RANGE INTEREST :{{ person.ageRangeMin }} - {{ person.ageRangeMax }}</p>
+
+    </br></br>
+
+    {% ifequal seebutton True %}
+        <form method="POST" action=".">
+        {% csrf_token %}
+            <input type="hidden" name="receiver" value="{{ person.user.username }}">
+            <button type="Submit" name="submit" value="new_match">Envoyer du Love</button>
+        </form>
+    {% endifequal %}
+
+    {% ifequal seemsg True %}
+        <h3>Contact</h3>
+        <form method="POST" action="{% url 'usercontact' %}">
+        {% csrf_token %}
+            <input type="hidden" name="receiver" value="{{ person.user.username }}">
+            <textarea name="msg" placeholder="Votre message plein de Love" maxlength="5000"></textarea><br>
+            <button type="Submit" name="submit" value="new_msg">Envoyer</button>
+        </form>
+    {% endifequal %}
+
+    {% ifnotequal msg None %}
+    {{ msg }}
+    {% endifnotequal %}
+
+{% endblock %}

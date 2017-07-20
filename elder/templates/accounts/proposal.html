@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %} PROPOSAL {% endblock %}
+
+{% block content %}
+
+    <h1>Proposition de Love</h1>
+
+    {% ifequal m_count 0 %}
+        <p><b>No Love</b></p>
+    {% else %}
+        <ul>
+            {% for m in matches %}
+                <li>
+                    <form action="." method="POST" id="form_proposal">
+                        {% csrf_token %}
+                        <p>{{ m.oldperson1 }}</p>
+                        <input type="hidden" name="u1" value="{{ m.oldperson1 }}">
+                        <input type="hidden" name="u2" value="{{ m.oldperson2 }}">
+                        <input type="hidden" name="match" value="{{ m }}">
+                        <button type="submit" name="response" value="OK">Accepter</button>
+                        <button type="submit" name="response" value="KO">Refuser</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endifequal %}
+
+    <h1>Vos demandes de love en attente</h1>
+    {% ifequal w_count 0 %}
+        <p><b>No Love</b></p>
+
+    {% else %}
+        <ul>
+            {% for w in wait %}
+                <li>{{ w.oldperson2 }}</li>
+            {% endfor %}
+        </ul>
+
+    {% endifequal %}
+
+
+
+
+{% endblock %}
+
+
+
