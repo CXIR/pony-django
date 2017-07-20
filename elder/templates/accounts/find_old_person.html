@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Recherche {% endblock %}
+{% block content %}
+
+    <form method="POST" action=".">
+        {% csrf_token %}
+        <input type="search" name="search" placeholder="Pseudo du love">
+        <input type="submit" value="Recherche"/>
+    </form>
+
+    {% ifnotequal msg None %}
+        <p>{{ msg }}</p>
+    {% else %}
+
+        <ul>
+            {% for p in persons %}
+                <li>
+                    <form action="{% url 'other' %}" method="GET">
+                        {% csrf_token %}
+                        {{ p.username }}
+                        <input type="hidden" name="username" value="{{ p.username }}"/>
+                        <input value="Voir son profil !" type="submit" />
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+
+
+    {% endifnotequal %}
+
+
+{% endblock %}
+

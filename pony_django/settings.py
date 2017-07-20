@@ -53,7 +53,7 @@ ROOT_URLCONF = 'pony_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['elder/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

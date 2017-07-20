@@ -19,16 +19,18 @@ from django.contrib.auth import views as auth_views
 from elder import views
 
 urlpatterns = [
-    url(r'^login', auth_views.login),
-    url(r'^logout', auth_views.logout, {'next_page': 'registration/login.html'}),
-    url(r'^password_change', auth_views.password_change),
-    url(r'^password_change_done', auth_views.password_change_done),
-    url(r'^password_reset', auth_views.password_reset),
-    url(r'^password_reset_done', auth_views.password_reset_done),
-    url(r'^password_reset_confirm', auth_views.password_reset_confirm),
-    url(r'^password_reset_complete', auth_views.password_reset_complete),
-    url(r'^contact/$', views.contact, name='contact'),
+    url(r'^login/$', views.login, name='login'), #localhost:8000/login/
+    url(r'^logout', views.logout, name='logout'),
+    url(r'^password_reset/$', views.password_reset, name='password_reset'),
+    url(r'^password_reset_done$', views.password_reset, name='password_reset_done'),
     url(r'^profile/$', views.profile, name='profile'),
-    url(r'^find/$', views.findoldperson, name='finoldperson'),
+    url(r'^registration/$', views.registration, name='registration'),
+    url(r'^matching/$', views.matching, name='matching'),
+    url(r'^suggest/$', views.suggest, name='suggest'),
+    url(r'^proposal/$', views.proposal, name='proposal'),
+    url(r'^find/$', views.findoldperson, name='findoldperson'),
+    url(r'^other/$', views.otherprofile, name='other'),
+    url(r'^update/$', views.update, name='update'),
+    url(r'^usercontact/$', views.user_contact, name='usercontact'),
     url(r'^admin/', admin.site.urls),
 ]
