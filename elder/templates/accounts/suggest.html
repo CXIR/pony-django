@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} SUGGEST {% endblock %}
+
+{% block content %}
+
+    <h1>SUGGEST</h1>
+
+    <ul>
+    {% for s in suggest %}
+
+        {% ifnotequal s.user.username user.username %}
+            {% if s.getage < user.oldperson.ageRangeMax and s.getage > user.oldperson.ageRangeMin %}
+                {% if user.oldperson.sexualOrientation == 'BOTH' %}
+                    <li>
+                        <form method="GET" action="{% url 'other' %}">
+                            {% csrf_token %}
+                            <p>{{ s.user.username }}</p>
+                            <input type="hidden" name="username" value="{{ s.user.username }}"/>
+                            <input type="submit" value="Voir son profil !" />
+                        </form>
+                    </li>
+
+                {% elif user.oldperson.sexualOrientation == 'MEN' and s.sexe == 'MEN' %}
+                    <form method="GET" action="{% url 'other' %}">
+                        {% csrf_token %}
+                        <p>{{ s.user.username }}</p>
+                        <input type="hidden" name="username" value="{{ s.user.username }}"/>
+                        <input type="submit" value="Voir son profil !" />
+                    </form>
+
+                {% elif user.oldperson.sexualOrientation == 'WOMEN' and s.sexe == 'WOMEN' %}
+                    <li>
+                        <form method="GET" action="{% url 'other' %}">
+                            {% csrf_token %}
+                            <p>{{ s.user.username }}</p>
+                            <input type="hidden" name="username" value="{{ s.user.username }}"/>
+                            <input type="submit" value="Voir son profil !" />
+                        </form>
+                    </li>
+
+                {% endif %}
+            {% endif %}
+        {% endifnotequal %}
+
+    {% endfor %}
+    </ul>
+
+{% endblock %}

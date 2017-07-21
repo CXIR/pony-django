@@ -1,27 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %} Connexion {% endblock %}
+{% block content %}
 
+    <h1>Connexion</h1>
 
-    <h1>Login</h1>
-
-    {% if form.errors %}
-    <p>Your username and password didn't match!
-    Please try again!</p>
+    {% if error %}
+    <p style="color: red">Utilisateur inconnu ou mauvais de mot de passe.</p>
     {% endif %}
 
+    {% if user.is_authenticated %}
+    Vous êtes connecté, {{ user.username }} !
+    {% else %}
     <form method="post" action=".">
-    {% csrf_token %}
-    <p><label for="id_username">Username : </label>{{ form.username }}</p>
-    <p><label for="id_password">Password : </label>{{ form.password }}</p>
-    <input type="hidden" name="next" value="{% url "profile" %}" />
-    <input type="submit" value="Submit" />
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Se connecter" />
     </form>
+    {% endif %}
 
 
-</body>
-</html>
+    <p>Mot de passe oublié ? <a href="{% url 'password_reset' %}"> Réinitialiser le ! </a></p>
+    <p>Vous n'êtes pas membre ? <a href="{% url 'registration' %}">Incrivez-vous !</a></p>
+
+{% endblock %}

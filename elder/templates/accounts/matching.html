@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Matching {% endblock %}
+
+{% block content %}
+
+    <h1>Love pour toi</h1>
+    <ul>
+    {% for m in matches %}
+        <li>
+        <form method="GET" action="{% url 'other' %}">
+        {% csrf_token %}
+            {{ m.oldperson1.user.username }}
+            <input type="hidden" name="username" value="{{ m.oldperson1.user.username }}"/>
+            <input type="submit" value="Voir son profil !" />
+        </form>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
+

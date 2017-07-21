@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Mon Profil {% endblock %}
+
+{% block content %}
+
+    <h1>Hello {{ user.get_full_name }}</h1>
+    <p>USERNAME : {{user.get_username}}</p>
+    <p>EMAIL : {{user.email}}</p>
+    <p>PASSWORD : {{user.password}}</p>
+    <p>LAST_LOGIN : {{user.last_login}}</p>
+    <p>DATE_JOINED : {{user.date_joined}}</p>
+    <p>BIRTHDAY : {{ user.oldperson.birthday }}</p>
+    <p>AGE : {{ user.oldperson.getage }}</p>
+    <p>DESCRIPTION : {{ user.oldperson.description }}</p>
+    <p>WEIGHT : {{ user.oldperson.weight }}</p>
+    <p>HEIGHT : {{ user.oldperson.height }}</p>
+    <p>SEXE : {{ user.oldperson.sexe }}</p>
+    <p>SEXUAL PREF. : {{ user.oldperson.sexualOrientation }}</p>
+    <p>AGE RANGE INTEREST :{{ user.oldperson.ageRangeMin }} - {{ user.oldperson.ageRangeMax }}</p>
+
+    <button><a href="{% url 'update' %}">Modifier mes infos</a></button>
+
+{% endblock %}
+
+
+

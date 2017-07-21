@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="asset/bootstrap.css" />
+    <meta charset="UTF-8">
+    <title>{% block title %} Adopte un ieuv ! {% endblock title %}</title>
+</head>
+<body>
+
+    <header>ADOPTE UN IEUV !</header>
+
+    {% if user.is_authenticated %}
+    <nav>
+        {% block nav %}
+            <ul>
+                <li><a href="{% url 'profile' %}">Mon Profil</a></li>
+                <li><a href="{% url 'findoldperson' %}">Recherche de Vieux & Vieilles</a></li>
+                <li><a href="{% url 'proposal' %}">Possible Love</a></li>
+                <li><a href="{% url 'matching' %}">Love</a></li>
+                <li><a href="{% url 'suggest' %}">Suggestion de Love</a></li>
+                <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+            </ul>
+        {% endblock nav %}
+    </nav>
+    {% endif %}
+
+    <section id="content">
+        {% block content %} {% endblock %}
+    </section>
+
+    </br></br></br>
+    <footer>ADOPTE UN IEUV ! - GRP Pony-Django 2017</footer>
+
+</body>
+</html>

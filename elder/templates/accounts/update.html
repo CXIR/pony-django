@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %} Modification des informations personnelles {% endblock %}
+{% block content %}
+
+    <h1>Modification des informations personnelles</h1>
+
+    {% ifnotequal error None %}
+    <p style="color:red">{{ error }}</p>
+    {% endifnotequal %}
+
+    <form action="." method="POST">
+        {% csrf_token %}
+
+        <label for="email">Email :</label>
+        <input type="email" name="email" id="email" placeholder="Ex : henri.durand@gmail.com" size="50" maxlength="100" />
+        </br></br>
+        <label for="password1">Mot de passe :</label>
+        <input type="password" name="password1" id="password1" placeholder="Ex : Demo1234" size="30" maxlength="10" />
+        </br></br>
+        <label for="password2">Mot de passe (encore) :</label>
+        <input type="password" name="password2" id="password2" placeholder="Ex : Demo1234" size="30" maxlength="10" />
+        </br></br>
+        <label for="description">Description :</label>
+        <input type="text" name="description" id="description" placeholder="Ex : Coucou, je suis un beau gosse" size="30" maxlength="5000" />
+        </br></br>
+        <label for="weight">Poids :</label>
+        <input type="number" name="weight" id="weight" min="30" max="300" placeholder="Ex : 60" maxlength="3" /> Kg
+        </br></br>
+        <label for="height">Taille :</label>
+        <input type="number" name="height" id="height" min="50" max="250" placeholder="Ex : 160" maxlength="3" /> cm
+        </br></br>
+
+        <label for="sexualOrientation"> Orientation sexuelle :</label>
+        <select name="sexualOrientation" id="sexualOrientation">
+           <option value="MEN">Hommes</option>
+           <option value="WOMEN">Femmes</option>
+           <option value="BOTH">Les deux</option>
+        </select>
+        </br></br>
+        <p>Tranche d'age recherchée : </p>
+        <ul>
+            <li>
+                <label for="ageRangeMin">Minimum :</label>
+                <input type="number" name="ageRangeMin" id="ageRangeMin" min="40" max="120" placeholder="Ex : 50" maxlength="3" /> ans </br></br>
+            </li>
+            <li>
+                <label for="ageRangeMax">Maximum :</label>
+                <input type="number" name="ageRangeMax" id="ageRangeMax" min="40" max="120" placeholder="Ex : 50" maxlength="3" /> ans
+            </li>
+           </ul>
+        </br></br></br>
+        <input type="submit" value="Valider" />
+    </form>
+
+{% endblock %}
+
+
+
