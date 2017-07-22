@@ -8,6 +8,8 @@ from elder.forms import ConnexionForm
 from elder.models import *
 from elder.tools import *
 
+import datetime
+
 
 def password_reset(request):
     error = None
@@ -97,27 +99,31 @@ def registration(request):
                 if password_verification(password1):
                     if username_verification(username):
                         if ageRangeMin < ageRangeMax:
-                            password = password1
+                            if birthday.year < (datetime.datetime.now().year - 45):
 
-                            user = User.objects.create_user(username, email, password)
-                            user.first_name = first_name
-                            user.last_name = last_name
-                            user.save()
+                                password = password1
 
-                            op = OldPerson()
-                            op.user = user
-                            op.save()
-                            op.birthday = birthday
-                            op.description = description
-                            op.weight = weight
-                            op.height = height
-                            op.sexe = sexe
-                            op.sexualOrientation = sexualOrientation
-                            op.ageRangeMax = ageRangeMax
-                            op.ageRangeMin = ageRangeMin
-                            op.save()
+                                user = User.objects.create_user(username, email, password)
+                                user.first_name = first_name
+                                user.last_name = last_name
+                                user.save()
 
-                            return redirect(login)
+                                op = OldPerson()
+                                op.user = user
+                                op.save()
+                                op.birthday = birthday
+                                op.description = description
+                                op.weight = weight
+                                op.height = height
+                                op.sexe = sexe
+                                op.sexualOrientation = sexualOrientation
+                                op.ageRangeMax = ageRangeMax
+                                op.ageRangeMin = ageRangeMin
+                                op.save()
+
+                                return redirect(login)
+                            else:
+                                error = "Vous êtes trop jeune..."
                         else:
                             error = "Erreur de saisie dans la tranche d'age"
                     else:
@@ -155,21 +161,14 @@ def otherprofile(request):
         return render(request, 'accounts/otherprofile.html',
                       {'person': person, 'seebutton': seebutton, 'seemsg': seemsg, 'msg': msg})
     else:
-        submit_value = request.POST.get("submit")
-        if submit_value == 'new_match':
-            receiver = OldPerson.objects.filter(user=User.objects.get(username=request.POST.get("receiver"))).first()
-            new_match = Matching()
-            new_match.oldperson1 = current
-            new_match.oldperson2 = receiver
-            new_match.save()
+        
+        receiver = OldPerson.objects.filter(user=User.objects.get(username=request.POST.get("receiver"))).first()
+        new_match = Matching()
+        new_match.oldperson1 = current
+        new_match.oldperson2 = receiver
+        new_match.save()
 
-            return render(request, 'accounts/new_match_confirm.html', {'receiver': receiver.user.username})
-        else:
-            receiver = OldPerson.objects.filter(user=User.objects.get(username=request.POST.get("receiver")))
-            msg = request.POST.get('msg')
-            # TODO: send email
-            return render(request, 'accounts/msg_send.html',
-                          {'sender': current, 'receiver': receiver.user.username, 'msg': msg})
+        return render(request, 'accounts/new_match_confirm.html', {'receiver': receiver.user.username})
 
     return render(request, 'accounts/otherprofile.html', {'msg': msg})
 
@@ -278,17 +277,17 @@ def user_contact(request):
 
     message = """
         Bonjour {},
-        
+
         Une demande de contact a ete effectuer par l'utilisateur suivant : {}
-        
-        Son message est le suivant : 
+
+        Son message est le suivant :
         {}
-        
+
         Pour le recontacter, vous pouvez lui adresser un mail a l'adresse mail suivante : {}
-        
+
         Cordialement,
-        
-        
+
+
         L'equipe d'Adopte un ieuv
 
        """.format(receiver.user.get_full_name(), sender.user.username, message,

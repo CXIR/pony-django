@@ -3,6 +3,7 @@
 
 {% block content %}
 
+  <!--
     <h1>SUGGEST</h1>
 
     <ul>
@@ -44,5 +45,84 @@
 
     {% endfor %}
     </ul>
+-->
+
+<div class="main-wrapper">
+
+  <div class="home">
+    <div class="well bloc bloc-x">
+      <h2>Suggestions</h2>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+
+  <div class="wrap-chicken-high">
+  {% for s in suggest %}
+
+      {% ifnotequal s.user.username user.username %}
+          {% if s.getage < user.oldperson.ageRangeMax and s.getage > user.oldperson.ageRangeMin %}
+              {% if user.oldperson.sexualOrientation == 'BOTH' %}
+
+              <div class="panel panel-success tickets">
+                <div class="panel-heading">
+                  {% csrf_token %}
+                  <h2 class="panel-title">{{ s.user.username }}</h2>
+                </div>
+                <div class="panel-body">
+                  <img src="asset/images/both.png" width="200"/>
+                </div>
+                <div class="panel-footer">
+                  <form method="GET" action="{% url 'other' %}">
+                      <input type="hidden" name="username" value="{{ s.user.username }}"/>
+                      <input class="btn btn-primary" type="submit" value="Voir son profil !" />
+                  </form>
+                  </div>
+                </div>
+
+              {% elif user.oldperson.sexualOrientation == 'MEN' and s.sexe == 'MEN' %}
+
+              <div class="panel panel-success tickets">
+                <div class="panel-heading">
+                  {% csrf_token %}
+                  <h2 class="panel-title">{{ s.user.username }}</h2>
+                </div>
+                <div class="panel-body">
+                  <img src="asset/images/men.jpg" width="200"/>
+                </div>
+                <div class="panel-footer">
+                  <form method="GET" action="{% url 'other' %}">
+                      <input type="hidden" name="username" value="{{ s.user.username }}"/>
+                      <input class="btn btn-primary" type="submit" value="Voir son profil !" />
+                  </form>
+                  </div>
+                </div>
+
+              {% elif user.oldperson.sexualOrientation == 'WOMEN' and s.sexe == 'WOMEN' %}
+
+
+              <div class="panel panel-success tickets">
+                <div class="panel-heading">
+                  {% csrf_token %}
+                  <h2 class="panel-title">{{ s.user.username }}</h2>
+                </div>
+                <div class="panel-body">
+                  <img src="asset/images/women.jpg" width="200"/>
+                </div>
+                <div class="panel-footer">
+                  <form method="GET" action="{% url 'other' %}">
+                      <input type="hidden" name="username" value="{{ s.user.username }}"/>
+                      <input class="btn btn-primary" type="submit" value="Voir son profil !" />
+                  </form>
+                  </div>
+                </div>
+
+              {% endif %}
+          {% endif %}
+      {% endifnotequal %}
+
+  {% endfor %}
+  </div>
+
+</div>
 
 {% endblock %}

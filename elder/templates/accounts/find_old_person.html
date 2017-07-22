@@ -2,32 +2,54 @@
 {% block title %} Recherche {% endblock %}
 {% block content %}
 
-    <form method="POST" action=".">
-        {% csrf_token %}
-        <input type="search" name="search" placeholder="Pseudo du love">
-        <input type="submit" value="Recherche"/>
-    </form>
+  <div class="main-wrapper">
+    <div class="home">
+      <div class="well bloc bloc-x">
+        <h1>Recherche</h1>
+      </div>
+    </div>
+    <div style="clear:both"></div>
+
+  <form method="POST" action=".">
+      {% csrf_token %}
+      <div class="form-group">
+      <input class="form-control" type="search" name="search" placeholder="Pseudo du love">
+      </div>
+      <div class="action">
+        <input class="btn btn-primary" type="submit" value="Recherche"/>
+      </div>
+  </form>
 
     {% ifnotequal msg None %}
-        <p>{{ msg }}</p>
+        <h3 class="text-warning">{{ msg }}</h3>
     {% else %}
 
-        <ul>
-            {% for p in persons %}
-                <li>
-                    <form action="{% url 'other' %}" method="GET">
-                        {% csrf_token %}
-                        {{ p.username }}
-                        <input type="hidden" name="username" value="{{ p.username }}"/>
-                        <input value="Voir son profil !" type="submit" />
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="wrap-chicken-high">
 
+      {% for p in persons %}
+
+      <div class="panel panel-primary tickets">
+        <div class="panel-heading">
+          {% csrf_token %}
+          <h2 class="panel-title">{{ p.username }}</h2>
+        </div>
+        <div class="panel-body">
+          <img src="asset/images/women.jpg" width="200"/>
+        </div>
+        <div class="panel-footer">
+          <form method="GET" action="{% url 'other' %}">
+              <input type="hidden" name="username" value="{{ p.username }}"/>
+              <input class="btn btn-primary" type="submit" value="Voir son profil !" />
+          </form>
+          </div>
+        </div>
+
+      {% endfor %}
+
+    </div>
 
     {% endifnotequal %}
 
+  </div>
 
 {% endblock %}
-
