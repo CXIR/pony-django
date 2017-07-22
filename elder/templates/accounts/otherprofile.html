@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Un vieux ou une vieille {% endblock %}
 {% block content %}
-
+    <!--
     <h1>OTHER OLD PERSON</h1>
 
     <p>USERNAME : {{ person.user.username }}</p>
@@ -37,5 +37,83 @@
     {% ifnotequal msg None %}
     {{ msg }}
     {% endifnotequal %}
+  -->
+
+  <div class="main-wrapper">
+
+    <div class="home">
+      <div class="well bloc bloc-l">
+        <h2>{{ person.user.username }}}</h2>
+        <br/>
+        <h4>Mail : {{ person.user.email}}</h4>
+        <h4>Naissance : {{ person.birthday }}, ({{ person.getage }} ans)</h4>
+        <blockquote>
+          <em>" {{ user.oldperson.description }} "</em>
+        </blockquote>
+      </div>
+      <div class="well bloc bloc-s">
+        <div class="image">
+          <img src="asset/images/men.jpg"/>
+        </div>
+      </div>
+    </div>
+    <div class="home">
+      <div class="well bloc bloc-x-alt">
+        <h3>MENSURATIONS ET PREFERENCES</h3>
+        <br/>
+        <table class="table">
+          <tr>
+            <td><h4 class="text-success">Pèse : {{ person.weight }} Kilos</h4></td>
+            <td><h4 class="text-success">Orientation : {{ person.sexualOrientation }}</h4></td>
+          </tr>
+          <tr>
+            <td><h4 class="text-success">Perche à : {{ person.height }} Mètre</h4></td>
+            <td><h4 class="text-success">Tranche d'Âge : {{ person.ageRangeMin }} - {{ person.ageRangeMax }} ans</h4></td>
+          </tr>
+          <tr>
+            <td><h4 class="text-success">Mon genre : {{ person.sexe }}</h4></td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="home">
+      <div class="well bloc bloc-s">
+        <h3>ACTIONS</h3>
+        <br/>
+        </br/>
+        {% ifequal seebutton True %}
+            <form method="POST" action=".">
+            {% csrf_token %}
+                <input type="hidden" name="receiver" value="{{ person.user.username }}">
+                <button class="btn btn-danger btn-lg" type="Submit" name="submit" value="new_match">Envoyer du Love</button>
+            </form>
+        {% endifequal %}
+
+      </div>
+      <div class="well bloc bloc-l">
+        <h4>CONTACTER</h4>
+        {% ifequal seemsg True %}
+            <form method="POST" action="{% url 'usercontact' %}">
+              <fieldset>
+            {% csrf_token %}
+                <input type="hidden" name="receiver" value="{{ person.user.username }}">
+                <div class="form-group description">
+                  <textarea class="form-control" rows="4" name="msg" placeholder="Votre message plein de Love" maxlength="5000"></textarea><br>
+                </div>
+                <div class="action">
+                  <button class="btn btn-success" type="Submit" name="submit" value="new_msg">Envoyer</button>
+                </div>
+              </fieldset>
+            </form>
+        {% endifequal %}
+
+        {% ifnotequal msg None %}
+        {{ msg }}
+        {% endifnotequal %}
+      </div>
+    </div>
+
+  </div>
 
 {% endblock %}

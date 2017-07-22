@@ -3,21 +3,37 @@
 
 {% block content %}
 
-    <h1>Love pour toi</h1>
-    <ul>
+    <div class="main-wrapper">
+      <div class="home">
+        <div class="well bloc bloc-x">
+          <h1>Love pour toi</h1>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+
+      <div class="wrap-chicken-high">
+
     {% for m in matches %}
-        <li>
-        <form method="GET" action="{% url 'other' %}">
+
+    <div class="panel panel-danger tickets">
+      <div class="panel-heading">
         {% csrf_token %}
-            {{ m.oldperson1.user.username }}
+        <h2 class="panel-title">{{ m.oldperson1.user.username }}</h2>
+      </div>
+      <div class="panel-body">
+        <img src="asset/images/men.jpg" width="200"/>
+      </div>
+      <div class="panel-footer">
+        <form method="GET" action="{% url 'other' %}">
             <input type="hidden" name="username" value="{{ m.oldperson1.user.username }}"/>
-            <input type="submit" value="Voir son profil !" />
+            <input class="btn btn-primary" type="submit" value="Voir son profil !" />
         </form>
-        </li>
+        </div>
+      </div>
+
     {% endfor %}
-    </ul>
+  </div>
+
+</div>
 
 {% endblock %}
-
-
-

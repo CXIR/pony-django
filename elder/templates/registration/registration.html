@@ -2,74 +2,123 @@
 {% block title %} Registration {% endblock %}
 {% block content %}
 
-    <h1>INSCRIPTION</h1>
 
-    {% ifnotequal error None %}
-    <p style="color:red">{{ error }}</p>
-    {% endifnotequal %}
 
-    <form action="." id="registration_form" method="POST">
+    <div class="login-title">
+      <h1>Inscription</h1>
+    </div>
+
+    <div class="jumbotron reset">
+
+
+
+    <form action="." id="registration_form" method="POST" class="form-horizontal">
+      <fieldset>
+        {% ifnotequal error None %}
+          <legend class="text-danger">{{ error }}</legend>
+        {% endifnotequal %}
+
         {% csrf_token %}
-
-        <label for="username">Pseudo :</label>
-        <input type="text" name="username" id="username" placeholder="Ex : Zozor" size="30" maxlength="10" />
-        </br></br>
-        <label for="last_name">Nom :</label>
-        <input type="text" name="last_name" id="last_name" placeholder="Ex : Durand" size="30" maxlength="50" />
-        </br></br>
-        <label for="first_name">Prénom :</label>
-        <input type="text" name="first_name" id="first_name" placeholder="Ex : Henri" size="30" maxlength="50" />
-        </br></br>
-        <label for="email">Email :</label>
-        <input type="email" name="email" id="email" placeholder="Ex : henri.durand@gmail.com" size="50" maxlength="100" />
-        </br></br>
-        <label for="password1">Mot de passe :</label>
-        <input type="password" name="password1" id="password1" placeholder="Ex : Demo1234" size="30" maxlength="10" />
-        </br></br>
-        <label for="password2">Mot de passe (encore) :</label>
-        <input type="password" name="password2" id="password2" placeholder="Ex : Demo1234" size="30" maxlength="10" />
-        </br></br>
-        <label for="birthday">Date de naissance :</label>
-        <input type="date" name="birthday" id="birthday" placeholder="Ex : 12/12/1900" size="30" maxlength="10" />
-        </br></br>
-        <label for="description">Description :</label>
-        <input type="text" name="description" id="description" placeholder="Ex : Coucou, je suis un beau gosse" size="30" maxlength="5000" />
-        </br></br>
-        <label for="weight">Poids :</label>
-        <input type="number" name="weight" id="weight" min="30" max="300" placeholder="Ex : 60" maxlength="3" /> Kg
-        </br></br>
-        <label for="height">Taille :</label>
-        <input type="number" name="height" id="height" min="50" max="250" placeholder="Ex : 160" maxlength="3" /> cm
-        </br></br>
-        <label for="sexe"> Sexe :</label>
-        <select name="sexe" id="sexe">
-           <option value="MEN">Homme</option>
-           <option value="WOMEN">Femme</option>
-        </select>
-        </br></br>
-        <label for="sexualOrientation"> Orientation sexuelle :</label>
-        <select name="sexualOrientation" id="sexualOrientation">
-           <option value="MEN">Hommes</option>
-           <option value="WOMEN">Femmes</option>
-           <option value="BOTH">Les deux</option>
-        </select>
-        </br></br>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="username">Pseudo :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="text" name="username" id="username" placeholder="Ex : Zozor" size="30" maxlength="10" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="last_name">Nom :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Ex : Durand" size="30" maxlength="50" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="first_name">Prénom :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="text" name="first_name" id="first_name" placeholder="Ex : Henri" size="30" maxlength="50" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="email">Email :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="email" name="email" id="email" placeholder="Ex : henri.durand@gmail.com" size="50" maxlength="100" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="password1">Mot de passe :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="password" name="password1" id="password1" placeholder="Ex : Demo1234" size="30" maxlength="10" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="password2">Mot de passe (encore) :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="password" name="password2" id="password2" placeholder="Ex : Demo1234" size="30" maxlength="10" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="birthday">Date de naissance :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="date" name="birthday" id="birthday" placeholder="Ex : 12/12/1900" size="30" maxlength="10" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="description">Description :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="text" name="description" id="description" placeholder="Ex : Coucou, je suis un beau gosse" size="30" maxlength="5000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="weight">Poids :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="number" name="weight" id="weight" min="30" max="300" placeholder="Ex : 60" maxlength="3" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="height">Taille :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="number" name="height" id="height" min="50" max="250" placeholder="Ex : 160" maxlength="3" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="sexe"> Sexe :</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="sexe" id="sexe">
+              <option value="MEN">Homme</option>
+              <option value="WOMEN">Femme</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="sexualOrientation"> Orientation sexuelle :</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="sexualOrientation" id="sexualOrientation">
+              <option value="MEN">Hommes</option>
+              <option value="WOMEN">Femmes</option>
+              <option value="BOTH">Les deux</option>
+            </select>
+          </div>
+        </div>
+        <br/>
         <p>Tranche d'age recherchée : </p>
-        <ul>
-            <li>
-                <label for="ageRangeMin">Minimum :</label>
-                <input type="number" name="ageRangeMin" id="ageRangeMin" min="40" max="120" placeholder="Ex : 50" maxlength="3" /> ans </br></br>
-            </li>
-            <li>
-                <label for="ageRangeMax">Maximum :</label>
-                <input type="number" name="ageRangeMax" id="ageRangeMax" min="40" max="120" placeholder="Ex : 50" maxlength="3" /> ans
-            </li>
-           </ul>
-        </br></br></br>
-        <input type="submit" value="Valider" />
+        <br/>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="ageRangeMin">Minimum :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="number" name="ageRangeMin" id="ageRangeMin" min="40" max="120" placeholder="Ex : 50" maxlength="3" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="ageRangeMax">Maximum :</label>
+          <div class="col-lg-10">
+            <input class="form-control" type="number" name="ageRangeMax" id="ageRangeMax" min="40" max="120" placeholder="Ex : 50" maxlength="3" />
+          </div>
+        </div>
+        <div class="action">
+          <input class="btn btn-success" type="submit" value="Valider" />
+        </div>
+      </fieldset>
     </form>
 
+  </div>
+
 {% endblock %}
-
-
-

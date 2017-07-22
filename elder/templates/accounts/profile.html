@@ -2,7 +2,7 @@
 {% block title %} Mon Profil {% endblock %}
 
 {% block content %}
-
+    <!--
     <h1>Hello {{ user.get_full_name }}</h1>
     <p>USERNAME : {{user.get_username}}</p>
     <p>EMAIL : {{user.email}}</p>
@@ -19,8 +19,53 @@
     <p>AGE RANGE INTEREST :{{ user.oldperson.ageRangeMin }} - {{ user.oldperson.ageRangeMax }}</p>
 
     <button><a href="{% url 'update' %}">Modifier mes infos</a></button>
+    -->
+    <div class="main-wrapper">
+
+      <div class="home">
+        <div class="well bloc bloc-l">
+          <h2>{{ user.get_full_name }} {{user.get_username}}</h2>
+          <br/>
+          <h4>Mail : {{user.email}}</h4>
+          <h4>Naissance : {{ user.oldperson.birthday }}, ({{ user.oldperson.getage }} ans)</h4>
+          <h4>Vous nous avez rejoins le : {{user.date_joined}}</h4>
+          <blockquote>
+            <em>" {{ user.oldperson.description }} "</em>
+          </blockquote>
+        </div>
+        <div class="well bloc bloc-s">
+          <div class="image">
+            <img src="asset/images/women.jpg"/>
+          </div>
+        </div>
+      </div>
+      <div class="home">
+        <div class="well bloc bloc-x-alt">
+          <h3>MENSURATIONS ET PREFERENCES</h3>
+          <br/>
+          <table class="table">
+            <tr>
+              <td><h4 class="text-success">Je pèse : {{ user.oldperson.weight }} Kilos</h4></td>
+              <td><h4 class="text-success">Mon orientation : {{ user.oldperson.sexualOrientation }}</h4></td>
+            </tr>
+            <tr>
+              <td><h4 class="text-success">Je perche à : {{ user.oldperson.height }} Mètre</h4></td>
+              <td><h4 class="text-success">Ma tranche d'Âge : {{ user.oldperson.ageRangeMin }} - {{ user.oldperson.ageRangeMax }} ans</h4></td>
+            </tr>
+            <tr>
+              <td><h4 class="text-success">Mon genre : {{ user.oldperson.sexe }}</h4></td>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="home">
+        <div class="well bloc bloc-x">
+          <h3>ACTIONS</h3>
+          <a class="btn btn-primary btn-lg" href="{% url 'update' %}">Modifier mes Infos</a>
+        </div>
+      </div>
+
+    </div>
 
 {% endblock %}
-
-
-

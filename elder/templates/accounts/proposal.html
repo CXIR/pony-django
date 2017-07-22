@@ -3,6 +3,8 @@
 
 {% block content %}
 
+<!--
+
     <h1>Proposition de Love</h1>
 
     {% ifequal m_count 0 %}
@@ -37,11 +39,85 @@
         </ul>
 
     {% endifequal %}
+-->
 
+<div class="main-wrapper">
+
+  <div class="home">
+    <div class="well bloc bloc-x">
+      <h1>Proposition de Love</h1>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+
+  <div class="wrap-chicken">
+
+  {% ifequal m_count 0 %}
+      <h3>No Love ... <i class="fa fa-frown-o"></i></h3>
+  {% else %}
+
+          {% for m in matches %}
+
+            <div class="panel panel-primary tickets">
+              <div class="panel-heading">
+                <h3 class="panel-title">Ça vous tente ?</h3>
+              </div>
+              <div class="panel-body">
+                {% csrf_token %}
+                <p>{{ m.oldperson1 }}</p>
+              </div>
+              <div class="panel-footer">
+                <form action="." method="POST" id="form_proposal">
+                    <input type="hidden" name="u1" value="{{ m.oldperson1 }}">
+                    <input type="hidden" name="u2" value="{{ m.oldperson2 }}">
+                    <input type="hidden" name="match" value="{{ m }}">
+                    <button class="btn btn-success" type="submit" name="response" value="OK">Accepter</button>
+                    <button class="btn btn-danger" type="submit" name="response" value="KO">Refuser</button>
+                  </form>
+                </div>
+              </div>
+
+          {% endfor %}
+
+  {% endifequal %}
+</div>
+
+  <div class="home">
+    <div class="well bloc bloc-x">
+      <h1>Vos demandes de love en attente</h1>
+    </div>
+    <br/>
+    <hr/>
+  </div>
+  <div style="clear:both"></div>
+
+  <div class="wrap-chicken">
+
+    {% ifequal w_count 0 %}
+
+        <h3>No Love ... <i class="fa fa-frown-o"></i></h3>
+
+    {% else %}
+
+      {% for w in wait %}
+
+          <div class="panel panel-warning tickets">
+            <div class="panel-heading">
+              <h3 class="panel-title">Ouh y'a un truc</h3>
+            </div>
+            <div class="panel-body">
+              <h4>{{ w.oldperson2 }}</h4>
+            </div>
+          </div>
+
+      {% endfor %}
+
+    {% endifequal %}
+
+  </div>
+
+</div>
 
 
 
 {% endblock %}
-
-
-

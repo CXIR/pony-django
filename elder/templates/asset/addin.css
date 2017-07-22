@@ -1,0 +1,112 @@
+/*
+* BOOTSTRAP 'FLATLY' SPECIFIC ADDIN CSS
+*/
+
+/** GENERAL */
+
+.image{ text-align: center; }
+.image img{ width: 90%; }
+
+.my-form{ width: 98%; }
+
+.action{ text-align: right; }
+
+.wrap-chicken{ width: 98%; height: 20em; overflow-y: scroll; }
+.wrap-chicken .tickets{ width: 50%; margin-left: 25%; }
+
+.wrap-chicken-high{ width: 98%; }
+.wrap-chicken-high .tickets{ width: 40%; margin-left: 30%; }
+
+.tickets .panel-body{ text-align: center; }
+
+.forgot{ width: 100%; text-align: center; }
+
+.reset{ width: 60%; margin-left: 20%; }
+.reset form{ width: 95%; margin-right: 5%; }
+
+.navbar{ position: fixed; width: 88%; margin-left:5%; top: 0px; z-index: 1; }
+.navfix{ height: 1em; }
+
+.main-wrapper-pad{ width: 90%; margin: 5%; padding: 5%; }
+.main-wrapper{ width: 90%; margin: 5%; }
+
+.s-component{ width: 30%; padding: 1em; margin-left: 1em; float: left; }
+
+.txtarea{ max-width: 100%; }
+
+.content{ width: 70%; margin-left: 15%; }
+.in-container{ width: 90%; margin-left: 5%; }
+
+.table-inbox{ width: 90%; margin-left: 5%; }
+.cell-s{ width: 25%; text-align: center; }
+.cell-l{ width: 40%; }
+
+.times{ width: 100%; text-align: right; }
+
+.loading{ width: 100%; text-align: center; }
+
+.scroll-box{ width: 100%; height: 30em; overflow-x: scroll; }
+
+.description{ width: 100%; margin-bottom: 1em; }
+.description textarea{ max-width: 100%; }
+
+.notif{ position: fixed; right:1em; bottom: 1em; z-index: 1; }
+
+.opacify{ filter: blur(5px) opacity(0.5); }
+
+/** USERS */
+
+.user-pop{ width: 40%; margin-left: 30%; position: fixed; z-index: 500; margin-top: 5em; }
+.user-pop-rides{ height: 10em; overflow: scroll; }
+.user-pop .panel-heading{ text-align: center; }
+.user-pop .panel-footer{ text-align: right; }
+
+.user-pop .table-icon{ width: 5%; }
+.user-pop .table-info{ width: 45%; text-align: left; font-size: 14px; padding-left: 1em; }
+.user-pop table{ margin: 1em; }
+
+.date-m{ width: 70%; margin-left: 5%; }
+
+/** LOGIN */
+
+.login-title{ text-align: center; }
+.login-form{ width: 40%; margin-left: 30%; margin-top: 2em; }
+.login-form input[type="text"]{ width: 90%; margin-left: 5%; }
+.login-action{ text-align: right; margin-right: 5%;  }
+
+/** PROFILE */
+.profil-header{ width: 100%; }
+.profil-section{ float: left; margin-right: 5%; width: auto; height: 15em; }
+
+.profil a{ margin-top: 1em; margin-bottom: 1em; }
+.profil h3{ margin-left: 2%; }
+
+/** REPORTS */
+
+.report{ width: 50%; position: fixed; top: 10em; margin-left: 25%; z-index:1; }
+.report-action{ float: right; }
+
+/** RIDES */
+.rides-head{ width: 100%; }
+.rides-head a{ margin-left: 84%; }
+.rides-head h2{ margin-left: 1em; margin-top: 1em; }
+
+.ride-pop{ position: fixed; width: 50%; margin-left: 25%; top:10em; z-index: 2; }
+.ride-pop .panel-body{ height: 25em; overflow-y: scroll; }
+
+/** MESSAGE */
+.send{ width: 60%; margin-left: 20%; margin-top: 2em; margin-bottom: 2em; }
+
+/** HOME */
+.home{ width: 100%; margin-bottom: 1em; }
+
+.bloc{ float: left; width: 100%; }
+
+.bloc-m{ width: 48%; margin-right: 2%; height: 20em; overflow-y: scroll; }
+.bloc-s{ width: 31%; margin-right: 2%; height: 20em; overflow-y: scroll;}
+.bloc-l{ width: 65%; margin-right: 2%; height: 20em; overflow-y: scroll;}
+.bloc-x{ width: 98%; overflow-y: scroll;}
+
+.bloc-x-alt{ width: 98%; overflow-y: scroll; height: 20em;}
+
+.heyyou{ width: 50%; position: fixed; }
