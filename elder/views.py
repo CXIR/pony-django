@@ -82,7 +82,7 @@ def registration(request):
         email = request.POST.get("email")
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
-        birthday = request.POST.get("birthday")
+        birthday = datetime.datetime.strptime(request.POST.get("birthday"), "%Y-%m-%d").date()
         description = request.POST.get("description")
         weight = request.POST.get("weight")
         height = request.POST.get("height")
@@ -98,7 +98,7 @@ def registration(request):
             if password1 == password2:
                 if password_verification(password1):
                     if username_verification(username):
-                        if ageRangeMin < ageRangeMax:
+                        if ageRangeMin > ageRangeMax:
                             if birthday.year < (datetime.datetime.now().year - 45):
 
                                 password = password1
