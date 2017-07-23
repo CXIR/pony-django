@@ -43,7 +43,7 @@
 
     <div class="home">
       <div class="well bloc bloc-l">
-        <h2>{{ person.user.username }}}</h2>
+        <h2>{{ person.user.username }}</h2>
         <br/>
         <h4>Mail : {{ person.user.email}}</h4>
         <h4>Naissance : {{ person.birthday }}, ({{ person.getage }} ans)</h4>
@@ -53,7 +53,11 @@
       </div>
       <div class="well bloc bloc-s">
         <div class="image">
-          <img src="asset/images/men.jpg"/>
+            {% if person.sexe == "WOMEN" %}
+                <img src="../static/asset/images/women.jpg"/>
+            {% else %}
+                <img src="../static/asset/images/men.jpg"/>
+            {% endif %}
         </div>
       </div>
     </div>
@@ -63,15 +67,15 @@
         <br/>
         <table class="table">
           <tr>
-            <td><h4 class="text-success">Pèse : {{ person.weight }} Kilos</h4></td>
-            <td><h4 class="text-success">Orientation : {{ person.sexualOrientation }}</h4></td>
+            <td><h4 class="text-success">Pèse : {{ person.weight }} Kg</h4></td>
+            <td><h4 class="text-success">J'aime {{ person.get_sexualOrientation_display }}</h4></td>
           </tr>
           <tr>
-            <td><h4 class="text-success">Perche à : {{ person.height }} Mètre</h4></td>
+            <td><h4 class="text-success">Perche à : {{ person.height }} cm</h4></td>
             <td><h4 class="text-success">Tranche d'Âge : {{ person.ageRangeMin }} - {{ person.ageRangeMax }} ans</h4></td>
           </tr>
           <tr>
-            <td><h4 class="text-success">Mon genre : {{ person.sexe }}</h4></td>
+            <td><h4 class="text-success">Je suis {{ person.get_sexe_display }}</h4></td>
             <td>&nbsp;</td>
           </tr>
         </table>
@@ -94,9 +98,8 @@
       <div class="well bloc bloc-l">
         <h4>CONTACTER</h4>
         {% ifequal seemsg True %}
-            <form method="POST" action="{% url 'usercontact' %}">
+            <form method="POST" action="{% url 'usercontact' %}"> {% csrf_token %}
               <fieldset>
-            {% csrf_token %}
                 <input type="hidden" name="receiver" value="{{ person.user.username }}">
                 <div class="form-group description">
                   <textarea class="form-control" rows="4" name="msg" placeholder="Votre message plein de Love" maxlength="5000"></textarea><br>

@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link rel="stylesheet" href="asset/bootstrap.css" />
+    <link rel="stylesheet" href="../static/asset/flatly.css" />
+    <link rel="stylesheet" href="../static/asset/addin.css" />
     <meta charset="UTF-8">
     <title>{% block title %} Adopte un ieuv ! {% endblock title %}</title>
 </head>
 <body>
 
-    <header>ADOPTE UN IEUV !</header>
-
     {% if user.is_authenticated %}
-    <nav>
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+             <a class="navbar-brand" href="{% url 'login' %}">ADOPTE UN IEUV !</a>
+        </div>
+
+
         {% block nav %}
-            <ul>
+            <ul class="nav navbar-nav">
                 <li><a href="{% url 'profile' %}">Mon Profil</a></li>
                 <li><a href="{% url 'findoldperson' %}">Recherche de Vieux & Vieilles</a></li>
                 <li><a href="{% url 'proposal' %}">Possible Love</a></li>
@@ -29,7 +39,6 @@
     </section>
 
     </br></br></br>
-    <footer>ADOPTE UN IEUV ! - GRP Pony-Django 2017</footer>
 
 </body>
 </html>

@@ -24,8 +24,9 @@
 
       <div class="home">
         <div class="well bloc bloc-l">
-          <h2>{{ user.get_full_name }} {{user.get_username}}</h2>
+          <h2>{{ user.get_full_name }}</h2>
           <br/>
+          <h4>Nom d'utilisateur : {{user.get_username}}</h4>
           <h4>Mail : {{user.email}}</h4>
           <h4>Naissance : {{ user.oldperson.birthday }}, ({{ user.oldperson.getage }} ans)</h4>
           <h4>Vous nous avez rejoins le : {{user.date_joined}}</h4>
@@ -35,7 +36,11 @@
         </div>
         <div class="well bloc bloc-s">
           <div class="image">
-            <img src="asset/images/women.jpg"/>
+              {% if user.oldperson.sexe == "WOMEN" %}
+            <img src="../static/asset/images/women.jpg"/>
+              {% else %}
+              <img src="../static/asset/images/men.jpg">
+              {% endif %}
           </div>
         </div>
       </div>
@@ -45,15 +50,15 @@
           <br/>
           <table class="table">
             <tr>
-              <td><h4 class="text-success">Je pèse : {{ user.oldperson.weight }} Kilos</h4></td>
-              <td><h4 class="text-success">Mon orientation : {{ user.oldperson.sexualOrientation }}</h4></td>
+              <td><h4 class="text-success">Je pèse : {{ user.oldperson.weight }} Kg</h4></td>
+              <td><h4 class="text-success">J'aime {{ user.oldperson.get_sexualOrientation_display }}</h4></td>
             </tr>
             <tr>
-              <td><h4 class="text-success">Je perche à : {{ user.oldperson.height }} Mètre</h4></td>
+              <td><h4 class="text-success">Je perche à : {{ user.oldperson.height }} cm</h4></td>
               <td><h4 class="text-success">Ma tranche d'Âge : {{ user.oldperson.ageRangeMin }} - {{ user.oldperson.ageRangeMax }} ans</h4></td>
             </tr>
             <tr>
-              <td><h4 class="text-success">Mon genre : {{ user.oldperson.sexe }}</h4></td>
+              <td><h4 class="text-success">Je suis {{ user.oldperson.get_sexe_display }}</h4></td>
               <td>&nbsp;</td>
             </tr>
           </table>

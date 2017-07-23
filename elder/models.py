@@ -13,16 +13,16 @@ class OldPerson(models.Model):
     height = models.IntegerField(default=150)
 
     S_CHOICES = (
-        ('MEN', 'Men'),
-        ('WOMEN', 'Women'),
+        ('MEN', 'un Homme'),
+        ('WOMEN', 'une Femme'),
     )
 
     sexe = models.CharField(max_length=10, choices=S_CHOICES, default='MEN')
 
     SO_CHOICES = (
-        ('MEN', 'Men'),
-        ('WOMEN', 'Women'),
-        ('BOTH', 'Both'),
+        ('MEN', 'les Hommes'),
+        ('WOMEN', 'les Femmes'),
+        ('BOTH', 'les Hommes & les Femmes'),
     )
 
     sexualOrientation = models.CharField(max_length=5, choices=SO_CHOICES, default='BOTH')
