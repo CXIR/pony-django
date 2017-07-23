@@ -17,15 +17,37 @@
 
     <div class="panel panel-danger tickets">
       <div class="panel-heading">
-        {% csrf_token %}
-        <h2 class="panel-title">{{ m.oldperson1.user.username }}</h2>
+
+          {% ifnotequal m.oldperson1.user.username user.username %}
+              <h2 class="panel-title">{{ m.oldperson1.user.username }}</h2>
+          {% else %}
+              <h2 class="panel-title">{{ m.oldperson2.user.username }}</h2>
+          {% endifnotequal %}
+
       </div>
       <div class="panel-body">
-        <img src="asset/images/men.jpg" width="200"/>
+        {% ifnotequal m.oldperson1.user.username user.username %}
+            {% if m.oldperson1.sexe == "WOMEN" %}
+                <img src="../static/asset/images/women.jpg" width="200"/>
+            {% else %}
+                <img src="../static/asset/images/men.jpg" width="200"/>
+            {% endif %}
+        {% else %}
+            {% if m.oldperson2.sexe == "WOMEN" %}
+                <img src="../static/asset/images/women.jpg" width="200"/>
+            {% else %}
+                <img src="../static/asset/images/men.jpg" width="200"/>
+            {% endif %}
+        {% endifnotequal %}
       </div>
       <div class="panel-footer">
         <form method="GET" action="{% url 'other' %}">
-            <input type="hidden" name="username" value="{{ m.oldperson1.user.username }}"/>
+            {% csrf_token %}
+            {% ifnotequal m.oldperson1.user.username user.username %}
+                <input type="hidden" name="username" value="{{ m.oldperson1.user.username }}"/>
+            {% else %}
+                <input type="hidden" name="username" value="{{ m.oldperson2.user.username }}"/>
+            {% endifnotequal %}
             <input class="btn btn-primary" type="submit" value="Voir son profil !" />
         </form>
         </div>

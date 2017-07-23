@@ -2,16 +2,19 @@
 {% block title %} Connexion {% endblock %}
 {% block content %}
 
-    <div class="login-title">
-      <h1>Adopte un ieuv !</h1>
-    </div>
 
     <div class="jumbotron login-form">
       <div class="login-title">
 
+
+        <div class="login-title">
+            <h2>Adopte un ieuv !</h2>
+        </div>
+
+
         {% if user.is_authenticated %}
 
-          Vous êtes connecté, {{ user.username }} !
+            </br><p>Vous êtes connecté, {{ user.username }} !</p>
 
         {% else %}
 
@@ -28,13 +31,15 @@
               <input class="btn btn-success" type="submit" value="Se connecter" />
             </form>
 
+            <div class="forgot">
+                <p class="text-info">Mot de passe oublié ? <a href="{% url 'password_reset' %}"> Réinitialiser le ! </a></p>
+                <p class="text-info">Vous n'êtes pas membre ? <a href="{% url 'registration' %}">Incrivez-vous !</a></p>
+            </div>
+
       {% endif %}
       </div>
     </div>
 
-    <div class="forgot">
-      <p class="text-info">Mot de passe oublié ? <a href="{% url 'password_reset' %}"> Réinitialiser le ! </a></p>
-      <p class="text-info">Vous n'êtes pas membre ? <a href="{% url 'registration' %}">Incrivez-vous !</a></p>
-    </div>
+
 
 {% endblock %}
